@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     
     defaults:
-      runs-on:
+      run:
         working-directory: ./devops-web
     steps:
       - name: Checkout
