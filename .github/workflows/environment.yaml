@@ -7,6 +7,9 @@ jobs:
   explore:
     runs-on: ubuntu-latest
     
+    defaults:
+      runs-on:
+        working-directory: ./devops-web
     steps:
       - name: Checkout
         uses: actions/checkout@v4
