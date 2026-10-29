@@ -1,4 +1,3 @@
-//api validation
 const express = require('express');
 
 const app = express();
@@ -9,6 +8,7 @@ let students = [
   { id: 2, name: 'Priya', age: 21, department: 'CSE' }
 ];
 
+var id_counter = 3;
 
 app.get('/students', (req, res) => {
   res.json(students);
@@ -17,7 +17,7 @@ app.get('/students', (req, res) => {
 
 app.post('/students', (req, res) => {
   const student = {
-    id: students.reduce((max, s) => Math.max(max, s.id), 0) + 1,
+    id: id_counter++,
     ...req.body
   };
 
@@ -46,11 +46,15 @@ app.delete('/students/:id', (req, res) => {
   if (index === -1) {
     return res.status(404).json({ message: 'Not found' });
   }
-
+  id_counter--;
   students.splice(index, 1);
   res.json({ message: 'Deleted successfully' });
 });
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
-});
+if (require.main === module) {
+  app.listen(3000, () => {
+    console.log('Server running on port 3000');
+  });
+}
+
+module.exports = app;
