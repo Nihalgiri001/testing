@@ -34,7 +34,7 @@ app.put('/students/:id', (req, res) => {
     return res.status(404).json({ message: 'Not found' });
   }
 
-  students[index] = { ...req.body, id };
+  students[index] = { id, ...req.body};
   res.json(students[index]);
 });
 
@@ -52,8 +52,8 @@ app.delete('/students/:id', (req, res) => {
 });
 
 if (require.main === module) {
-  app.listen(3000, () => {
-    console.log('Server running on port 3000');
+  app.listen(3001, () => {
+    console.log('Server running on port 3001');
   });
 }
 
