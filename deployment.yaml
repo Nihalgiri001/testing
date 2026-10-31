@@ -17,4 +17,4 @@ spec:
           image: devops-web:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 3000
+            - containerPort: 3001

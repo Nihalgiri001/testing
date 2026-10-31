@@ -2,29 +2,20 @@ const request = require('supertest');
 const app = require('./server');
 
 describe('Student API', () => {
-  test('GET /students returns 200', async () => {
+  test('Get student API', async () => {
     const res = await request(app).get('/students');
-
     expect(res.statusCode).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
   });
-
-  test('POST /students returns 201', async () => {
-    const res = await request(app)
-      .post('/students')
-      .send({
-        name: 'Kiran',
-        age: 20,
-        department: 'CSE'
-      });
-
+  
+  test('POST students API', async () => {
+    const res = await request(app).post('/students').send({ name: 'ghi', department: 'CSE' });
     expect(res.statusCode).toBe(201);
-    expect(res.body.name).toBe('Kiran');
+    expect(res.body.name).toBe('ghi');
   });
 
-  test('Invalid student returns 404', async () => {
+  test('Invalid students test', async() => {
     const res = await request(app).get('/students/9999');
-
     expect(res.statusCode).toBe(404);
   });
 });
